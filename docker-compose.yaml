@@ -3,45 +3,61 @@ version: "3.8"
 services:
   nginx:
     build:
-      context: nginx
-    image: ghcr.io/smashedr/docker-nginx-static:latest
+      context: src
+    image: ghcr.io/cssnr/docker-nginx-static:latest
     #environment:
-    #  SUID: 1000
-    #  STATIC: /static
+    #  #SUID: 1000
+    #  #STATIC: /static
+    #  GZIP_TYPES: "*"
     deploy:
-      mode: global
+      replicas: 1
       resources:
         limits:
-          cpus: "1.0"
-          memory: 25M
+          cpus: "2.0"
+          memory: 64M
     volumes:
       - static:/static
     ports:
-      - "8000:80"
+      - "${PORT:-8000}:80"
 
-  openssh-server:
-    image: lscr.io/linuxserver/openssh-server:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-      - SUDO_ACCESS=false
-      - PASSWORD_ACCESS=true
-      - USER_NAME=${USER_NAME:-test}
-      - USER_PASSWORD=${USER_PASSWORD:-test123}
-      - DOCKER_MODS=linuxserver/mods:openssh-server-rsync
-      - LOG_STDOUT=true
+  sftp:
+    image: atmoz/sftp:latest
+    command: ${USER_NAME:-foo}:${USER_PASS:-letmein123}:${SUID:-1000}
     deploy:
-      mode: global
+      replicas: 1
       resources:
         limits:
           cpus: "1.0"
-          memory: 25M
+          memory: 64M
     volumes:
-      - config:/config
-      - static:/static
+      - static:/home/${USER_NAME:-foo}/static
+      - config:/etc/ssh
     ports:
-      - "${DOCKER_PORT:-2222}:2222"
+      - "${SSH_PORT:-2222}:22"
+
+  #openssh-server:
+  #  image: lscr.io/linuxserver/openssh-server:latest
+  #  environment:
+  #    - PUID=1000
+  #    - PGID=1000
+  #    - TZ=Etc/UTC
+  #    - SUDO_ACCESS=false
+  #    - PASSWORD_ACCESS=true
+  #    - USER_NAME=${USER_NAME:-foo}
+  #    - USER_PASSWORD=${USER_PASS:-letmein123}
+  #    - DOCKER_MODS=linuxserver/mods:openssh-server-rsync
+  #    - LOG_STDOUT=true
+  #  deploy:
+  #    replicas: 1
+  #    resources:
+  #      limits:
+  #        cpus: "1.0"
+  #        memory: 64M
+  #  volumes:
+  #    - static:/static
+  #    - config:/config
+  #  ports:
+  #    - "${SSH_PORT:-2222}:2222"
 
 volumes:
   static:

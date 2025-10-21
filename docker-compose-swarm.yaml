@@ -1,0 +1,73 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: ghcr.io/cssnr/docker-nginx-static:latest
+    #environment:
+    #  #SUID: 1000
+    #  #STATIC: /static
+    #  GZIP_TYPES: "*"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 64M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.static-site.rule=Host(`static-site.cssnr.com`)"
+        - "traefik.http.routers.static-site.entrypoints=websecure"
+        - "traefik.http.routers.static-site.tls=true"
+        - "traefik.http.services.static-site.loadbalancer.server.port=80"
+        #- "traefik.http.routers.static-site.tls.certresolver=le"
+    volumes:
+      - static:/static
+    networks:
+      - traefik-public
+
+  #sftp:
+  #  image: atmoz/sftp:latest
+  #  command: ${USER_NAME:-foo}:${USER_PASS:-letmein123}:${SUID:-1000}
+  #  deploy:
+  #    replicas: 1
+  #    resources:
+  #      limits:
+  #        cpus: "1.0"
+  #        memory: 64M
+  #  volumes:
+  #    - static:/home/${USER_NAME:-foo}/static
+  #    - config:/etc/ssh
+  #  ports:
+  #    - "${SSH_PORT:-2222}:22"
+
+  openssh-server:
+    image: lscr.io/linuxserver/openssh-server:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - SUDO_ACCESS=false
+      - PASSWORD_ACCESS=true
+      - USER_NAME=${USER_NAME:-foo}
+      - USER_PASSWORD=${USER_PASS:-letmein123}
+      - DOCKER_MODS=linuxserver/mods:openssh-server-rsync
+      - LOG_STDOUT=true
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 64M
+    volumes:
+      - static:/static
+      - config:/config
+    ports:
+      - "${SSH_PORT:-2222}:2222"
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  static:
+  config:

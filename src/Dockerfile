@@ -4,7 +4,7 @@ ENV TZ=UTC
 
 LABEL org.opencontainers.image.source="https://github.com//docker-nginx-static"
 LABEL org.opencontainers.image.description="Docker Nginx Static"
-LABEL org.opencontainers.image.authors="smashedr"
+LABEL org.opencontainers.image.authors="cssnr"
 
 RUN rm -rf /etc/nginx/conf.d/default.conf
 

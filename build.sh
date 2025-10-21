@@ -3,7 +3,7 @@
 set -e
 
 REGISTRY_HOST="ghcr.io"
-REGISTRY_USER="smashedr"
+REGISTRY_USER="cssnr"
 REGISTRY_REPO="docker-nginx-static"
 
 BUILD_CONTEXT="src"

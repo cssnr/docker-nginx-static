@@ -4,7 +4,7 @@ services:
   nginx:
     build:
       context: nginx
-    image: ghcr.io/smashedr/docker-nginx-static:latest
+    image: ghcr.io/cssnr/docker-nginx-static:latest
     #environment:
     #  SUID: 1000
     #  STATIC: /static

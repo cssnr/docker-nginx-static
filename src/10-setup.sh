@@ -7,11 +7,9 @@ echo "Running: ${0}"
 echo "STATIC: ${STATIC:-/static}"
 echo "SUID: ${SUID:-1000}"
 
-echo "Setting Permissions ${SUID:-1000}:${SUID:-1000} on ${STATIC:-/static}"
-chown -R "${SUID:-1000}:${SUID:-1000}" "${STATIC:-/static}"
-
-if [ -n "${GZIP_TYPES}" ];then
+: "${GZIP_TYPES:=*}"
 echo "GZIP_TYPES: ${GZIP_TYPES}"
+if [ "${GZIP_TYPES}" != "off" ];then
 cat <<EOF > /etc/nginx/conf.d/http.gzip.conf
 gzip            on;
 gzip_proxied    any;
@@ -28,6 +26,9 @@ auth_basic            "${BASIC_REALM:-Unauthorized}";
 auth_basic_user_file  /etc/nginx/auth.users;
 EOF
 fi
+
+echo "+ chown -R ${SUID:-1000}:${SUID:-1000} ${STATIC:-/static}"
+chown -R "${SUID:-1000}:${SUID:-1000}" "${STATIC:-/static}"
 
 echo "${0} - Done"
 

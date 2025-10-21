@@ -27,10 +27,14 @@ Coming Soon...
 
 | Variable    |    Default     | Description&nbsp;of&nbsp;Environment&nbsp;Variable |
 | :---------- | :------------: | :------------------------------------------------- |
+| STATIC      |    /static     | Nginx root directory                               |
+| SUID        |      1000      | Directory group/user ID                            |
 | GZIP_TYPES  |       -        | Nginx content gzip_types to compress               |
 | GZIP_LENGTH |     `1000`     | Minimum content size to compress                   |
 | BASIC_AUTH  |       -        | Basic auth file contents                           |
 | BASIC_REALM | `Unauthorized` | Minimum content size to compress                   |
+
+See the [src/10-setup.sh](src/10-setup.sh) file for more details.
 
 #### Basic Auth
 

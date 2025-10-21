@@ -29,7 +29,7 @@ Coming Soon...
 | :---------- | :------------: | :------------------------------------------------- |
 | STATIC      |    /static     | Nginx root directory                               |
 | SUID        |      1000      | Directory group/user ID                            |
-| GZIP_TYPES  |       -        | Nginx content gzip_types to compress               |
+| GZIP_TYPES  |      `*`       | Nginx gzip_types, set `off` to disable             |
 | GZIP_LENGTH |     `1000`     | Minimum content size to compress                   |
 | BASIC_AUTH  |       -        | Basic auth file contents                           |
 | BASIC_REALM | `Unauthorized` | Minimum content size to compress                   |
@@ -51,7 +51,10 @@ environment:
   BASIC_AUTH: 'user:$$apr1$$XFVN0nJA$$IgZxtMHVAeA.Pu7ufU7/I0\nuser2:$$apr1$$vswJgdwo$$2XkDOrvJFQ2pKwrXqGeWM0'
 ```
 
-AI is Retarded.
+For examples see:
+
+- [docker-compose.yaml](docker-compose.yaml)
+- [docker-compose-swarm.yaml](docker-compose-swarm.yaml)
 
 ## Support
 

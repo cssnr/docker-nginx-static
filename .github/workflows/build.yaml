@@ -72,16 +72,16 @@ jobs:
           echo "labels: ${{ steps.tags.outputs.labels }}"
           echo "annotations: ${{ steps.tags.outputs.annotations }}"
 
-      - name: "Parse Nginx Version"
-        uses: madhead/semver-utils@latest
-        id: semver
-        with:
-          version: ${{ github.ref_name }}
+      #- name: "Parse Nginx Version"
+      #  uses: madhead/semver-utils@latest
+      #  id: semver
+      #  with:
+      #    version: ${{ github.ref_name }}
 
-      - name: "Debug Nginx Version"
-        continue-on-error: true
-        run: |
-          echo "NGINX_VERSION: ${{ steps.semver.outputs.release }}"
+      #- name: "Debug Nginx Version"
+      #  continue-on-error: true
+      #  run: |
+      #    echo "NGINX_VERSION: ${{ steps.semver.outputs.release }}"
 
       - name: "Build and Push"
         uses: docker/build-push-action@v6

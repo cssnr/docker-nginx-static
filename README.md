@@ -32,6 +32,23 @@ Coming Soon...
 | BASIC_AUTH  |       -        | Basic auth file contents                           |
 | BASIC_REALM | `Unauthorized` | Minimum content size to compress                   |
 
+#### Basic Auth
+
+```shell
+$ htpasswd -nb user pass
+user:$apr1$XFVN0nJA$IgZxtMHVAeA.Pu7ufU7/I0
+```
+
+Replace all `$` with `$$` for docker-compose.yaml files.  
+Use `\n` for newlines to add multiple credentials.
+
+```yaml
+environment:
+  BASIC_AUTH: 'user:$$apr1$$XFVN0nJA$$IgZxtMHVAeA.Pu7ufU7/I0\nuser2:$$apr1$$vswJgdwo$$2XkDOrvJFQ2pKwrXqGeWM0'
+```
+
+AI is Retarded.
+
 ## Support
 
 Please let us know if you run into any [issues](https://github.com/cssnr/docker-nginx-static/issues)

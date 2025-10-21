@@ -9,15 +9,15 @@ services:
     #  SUID: 1000
     #  STATIC: /static
     deploy:
-      mode: global
+      replicas: 1
       resources:
         limits:
-          cpus: "1.0"
-          memory: 25M
+          cpus: "2.0"
+          memory: 64M
     volumes:
       - static:/static
     ports:
-      - "8000:80"
+      - "${PORT:-8000}:80"
 
   openssh-server:
     image: lscr.io/linuxserver/openssh-server:latest
@@ -35,8 +35,8 @@ services:
       mode: global
       resources:
         limits:
-          cpus: "1.0"
-          memory: 25M
+          cpus: "2.0"
+          memory: 32M
     volumes:
       - config:/config
       - static:/static

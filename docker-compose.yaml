@@ -22,7 +22,7 @@ services:
 
   sftp:
     image: atmoz/sftp:latest
-    command: ${USER:-foo}:${PASS:-torrent1}:${SUID:-1000}
+    command: ${USER_NAME:-foo}:${USER_PASS:-letmein123}:${SUID:-1000}
     deploy:
       replicas: 1
       resources:
@@ -30,7 +30,7 @@ services:
           cpus: "1.0"
           memory: 64M
     volumes:
-      - static:/home/${USER:-foo}/static
+      - static:/home/${USER_NAME:-foo}/static
       - config:/etc/ssh/
     ports:
       - "${SSH_PORT:-2222}:22"
@@ -43,8 +43,8 @@ services:
   #    - TZ=Etc/UTC
   #    - SUDO_ACCESS=false
   #    - PASSWORD_ACCESS=true
-  #    - USER_NAME=${USER_NAME:-test}
-  #    - USER_PASSWORD=${USER_PASSWORD:-test123}
+  #    - USER_NAME=${USER_NAME:-foo}
+  #    - USER_PASSWORD=${USER_PASS:-letmein123}
   #    - DOCKER_MODS=linuxserver/mods:openssh-server-rsync
   #    - LOG_STDOUT=true
   #  deploy:

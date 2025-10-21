@@ -31,7 +31,7 @@ services:
           memory: 64M
     volumes:
       - static:/home/${USER_NAME:-foo}/static
-      - config:/etc/ssh/
+      - config:/etc/ssh
     ports:
       - "${SSH_PORT:-2222}:22"
 

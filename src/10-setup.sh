@@ -4,8 +4,15 @@ set -e
 
 echo "Running: ${0}"
 
-echo "STATIC: ${STATIC:-/static}"
+_NGINX_INDEX="index.html index.htm"
+_STATIC="/static"
+
+echo "STATIC: ${STATIC:-$_STATIC}"
 echo "SUID: ${SUID:-1000}"
+echo "NGINX_INDEX: ${NGINX_INDEX:=$_NGINX_INDEX}"
+
+sed "s/NGINX_INDEX/${NGINX_INDEX:=$_NGINX_INDEX}/g" \
+    -i /etc/nginx/nginx.conf
 
 : "${GZIP_TYPES:=*}"
 echo "GZIP_TYPES: ${GZIP_TYPES}"
@@ -27,8 +34,8 @@ auth_basic_user_file  /etc/nginx/auth.users;
 EOF
 fi
 
-echo "+ chown -R ${SUID:-1000}:${SUID:-1000} ${STATIC:-/static}"
-chown -R "${SUID:-1000}:${SUID:-1000}" "${STATIC:-/static}"
+echo "+ chown -R ${SUID:-1000}:${SUID:-1000} ${STATIC:-$_STATIC}"
+chown -R "${SUID:-1000}:${SUID:-1000}" "${STATIC:-$_STATIC}"
 
 echo "${0} - Done"
 

@@ -25,14 +25,15 @@ Coming Soon...
 
 ## Options
 
-| Variable    |    Default     | Description&nbsp;of&nbsp;Environment&nbsp;Variable |
-| :---------- | :------------: | :------------------------------------------------- |
-| STATIC      |    /static     | Nginx root directory                               |
-| SUID        |      1000      | Directory group/user ID                            |
-| GZIP_TYPES  |      `*`       | Nginx gzip_types, set `off` to disable             |
-| GZIP_LENGTH |     `1000`     | Minimum content size to compress                   |
-| BASIC_AUTH  |       -        | Basic auth file contents                           |
-| BASIC_REALM | `Unauthorized` | Minimum content size to compress                   |
+| Variable    |        Default         | Description&nbsp;of&nbsp;Environment&nbsp;Variable |
+| :---------- | :--------------------: | :------------------------------------------------- |
+| STATIC      |        /static         | Nginx root directory                               |
+| SUID        |          1000          | Directory group/user ID                            |
+| NGINX_INDEX | `index.html index.htm` | Nginx directory index files                        |
+| GZIP_TYPES  |          `*`           | Nginx gzip_types, set `off` to disable             |
+| GZIP_LENGTH |         `1000`         | Minimum content size to compress                   |
+| BASIC_AUTH  |           -            | Basic auth file contents                           |
+| BASIC_REALM |     `Unauthorized`     | Minimum content size to compress                   |
 
 See the [src/10-setup.sh](src/10-setup.sh) file for more details.
 

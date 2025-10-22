@@ -30,6 +30,7 @@ Coming Soon...
 | STATIC      |        /static         | Nginx root directory                               |
 | SUID        |          1000          | Directory group/user ID                            |
 | NGINX_INDEX | `index.html index.htm` | Nginx directory index files                        |
+| ERROR_PAGE  |      `/404.html`       | Nginx 404 page, set `off` to disable               |
 | GZIP_TYPES  |          `*`           | Nginx gzip_types, set `off` to disable             |
 | GZIP_LENGTH |         `1000`         | Minimum content size to compress                   |
 | BASIC_AUTH  |           -            | Basic auth file contents                           |

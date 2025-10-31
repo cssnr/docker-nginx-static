@@ -1,5 +1,5 @@
-[![Image Size](https://badges.cssnr.com/ghcr/size/cssnr/docker-nginx-static)](https://github.com/cssnr/docker-nginx-static/pkgs/container/docker-nginx-proxy)
-[![Image Latest](https://badges.cssnr.com/ghcr/tags/cssnr/docker-nginx-static/latest)](https://github.com/cssnr/docker-nginx-static/pkgs/container/docker-nginx-proxy)
+[![Image Size](https://badges.cssnr.com/ghcr/size/cssnr/docker-nginx-static)](https://github.com/cssnr/docker-nginx-static/pkgs/container/docker-nginx-static)
+[![Image Latest](https://badges.cssnr.com/ghcr/tags/cssnr/docker-nginx-static/latest)](https://github.com/cssnr/docker-nginx-static/pkgs/container/docker-nginx-static)
 [![GitHub Tag Major](https://img.shields.io/github/v/tag/cssnr/docker-nginx-static?sort=semver&filter=!*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/docker-nginx-static/tags)
 [![GitHub Tag Minor](https://img.shields.io/github/v/tag/cssnr/docker-nginx-static?sort=semver&filter=!*.*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/docker-nginx-static/releases)
 [![GitHub Tag Release](https://img.shields.io/github/v/tag/cssnr/docker-nginx-static?sort=semver&filter=!*.*.*.*&logo=git&logoColor=white&labelColor=585858&label=%20)](https://github.com/cssnr/docker-nginx-static/releases/latest)

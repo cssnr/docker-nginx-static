@@ -21,14 +21,19 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
-      - name: "Setup Node 24"
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
+      - name: "yamllint"
+        if: ${{ !cancelled() }}
+        env:
+          CONFIG: .github/yamllint.yaml
+        run: |
+          echo "::group::List Files"
+          yamllint -c "${{ env.CONFIG }}" --list-files .
+          echo "::endgroup::"
+          yamllint -c "${{ env.CONFIG }}" .
 
-      - name: "Prettier"
+      - name: "prettier"
         if: ${{ !cancelled() }}
         run: |
           echo "::group::Install"
@@ -36,35 +41,13 @@ jobs:
           echo "::endgroup::"
           npx prettier --check .
 
-      - name: "Yamllint"
+      - name: "actionlint"
         if: ${{ !cancelled() }}
-        env:
-          CONFIG: "{extends: relaxed, ignore: [node_modules/], rules: {line-length: {max: 119}}}"
-        run: |
-          echo "::group::List Files"
-          yamllint -d '${{ env.CONFIG }}' --list-files .
-          echo "::endgroup::"
-          yamllint -d '${{ env.CONFIG }}' .
-
-      - name: "Actionlint"
-        if: ${{ !cancelled() }}
-        run: |
-          echo "::group::Download"
-          loc=$(curl -sI https://github.com/rhysd/actionlint/releases/latest | grep -i '^location:')
-          echo "loc: ${loc}"
-          tag=$(echo "${loc}" | sed -E 's|.*/tag/v?(.*)|\1|' | tr -d '\t\r\n')
-          echo "tag: ${tag}"
-          url="https://github.com/rhysd/actionlint/releases/latest/download/actionlint_${tag}_linux_amd64.tar.gz"
-          echo "url: ${url}"
-          curl -sL "${url}" | tar xz -C "${RUNNER_TEMP}" actionlint
-          file "${RUNNER_TEMP}/actionlint"
-          "${RUNNER_TEMP}/actionlint" --version
-          echo "::endgroup::"
-          "${RUNNER_TEMP}/actionlint" -color -verbose -shellcheck= -pyflakes=
+        uses: cssnr/actionlint-action@v1
 
       - name: "Hadolint"
         if: ${{ !cancelled() }}
-        uses: hadolint/hadolint-action@v3.3.0
+        uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
         with:
           dockerfile: src/Dockerfile
-          ignore: "DL3018"
+          ignore: DL3018

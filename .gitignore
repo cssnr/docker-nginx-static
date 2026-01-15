@@ -1,8 +1,16 @@
+# Generic
 .idea/
 *.iml
 .vscode/
+.venv/
+venv/
+__pycache__/
+*.egg-info/
 node_modules/
-eslint_report.json
-.env
-.secrets
-.vars
+build/
+dist/
+.*cache
+*.log
+*.pyc
+.coverage
+coverage.xml

@@ -47,7 +47,7 @@ jobs:
 
       - name: "Hadolint"
         if: ${{ !cancelled() }}
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
         with:
           dockerfile: src/Dockerfile
           ignore: DL3018

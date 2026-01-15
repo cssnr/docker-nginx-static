@@ -2,7 +2,7 @@ FROM nginx:alpine-slim
 
 ENV TZ=UTC
 
-LABEL org.opencontainers.image.source="https://github.com//docker-nginx-static"
+LABEL org.opencontainers.image.source="https://github.com/cssnr/docker-nginx-static"
 LABEL org.opencontainers.image.description="Docker Nginx Static"
 LABEL org.opencontainers.image.authors="cssnr"
 

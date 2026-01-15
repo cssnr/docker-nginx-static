@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: "Debug CTX github"
         if: ${{ !github.event.act }}
@@ -44,7 +44,7 @@ jobs:
 
       - name: "Generate Version Tags"
         id: version
-        uses: cssnr/update-version-tags-action@v1
+        uses: cssnr/update-version-tags-action@v2
         with:
           prefix: ""
           release: true
@@ -59,7 +59,7 @@ jobs:
 
       - name: "Generate Docker Tags"
         id: tags
-        uses: cssnr/docker-tags-action@v1
+        uses: cssnr/docker-tags-action@v2
         with:
           images: "ghcr.io/${{ github.repository }}"
           tags: ${{ steps.version.outputs.tags }}

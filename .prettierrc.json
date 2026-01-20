@@ -6,6 +6,7 @@
     {
       "files": ["**/*.html", "**/*.yaml", "**/*.yml"],
       "options": {
+        "printWidth": 119,
         "singleQuote": false
       }
     },

@@ -19,16 +19,19 @@
 
 # Docker Nginx Static
 
-Docker Static Web Server
+Docker Nginx Static Web Server.
 
-Coming Soon...
+```shell
+cd directory-to-serve
+docker run --rm -p 80:80 -v "$(pwd):/static" ghcr.io/cssnr/docker-nginx-static:latest
+```
 
 ## Options
 
 | Variable    |        Default         | Description&nbsp;of&nbsp;Environment&nbsp;Variable |
 | :---------- | :--------------------: | :------------------------------------------------- |
-| STATIC      |        /static         | Nginx root directory                               |
-| SUID        |          1000          | Directory group/user ID                            |
+| STATIC      |       `/static`        | Nginx root directory                               |
+| SUID        |         `1000`         | Directory group/user ID                            |
 | NGINX_INDEX | `index.html index.htm` | Nginx directory index files                        |
 | ERROR_PAGE  |      `/404.html`       | Nginx 404 page, set `off` to disable               |
 | GZIP_TYPES  |          `*`           | Nginx gzip_types, set `off` to disable             |
@@ -58,29 +61,30 @@ For examples see:
 - [docker-compose.yaml](docker-compose.yaml)
 - [docker-compose-swarm.yaml](docker-compose-swarm.yaml)
 
-## Support
+# Support
 
 Please let us know if you run into any [issues](https://github.com/cssnr/docker-nginx-static/issues)
 or want to see [new features](https://github.com/cssnr/docker-nginx-static/discussions/categories/feature-requests)...
 
-For general help or to request a feature:
+For general help or to request a feature, see:
 
 - Q&A Discussion: https://github.com/cssnr/docker-nginx-static/discussions/categories/q-a
 - Request a Feature: https://github.com/cssnr/docker-nginx-static/discussions/categories/feature-requests
+- Chat with us on Discord: https://discord.gg/wXy6m2X8wY
 
-If you are experiencing an issue/bug or getting unexpected results:
+If you are experiencing an issue/bug or getting unexpected results, you can:
 
 - Report an Issue: https://github.com/cssnr/docker-nginx-static/issues
+- Provide General Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/?app=actions-tools)
 - Chat with us on Discord: https://discord.gg/wXy6m2X8wY
-- Provide General Feedback: [https://cssnr.github.io/feedback/](https://cssnr.github.io/feedback/)
 
 # Contributing
+
+If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
 
 Please consider making a donation to support the development of this project
 and [additional](https://cssnr.com/) open source projects.
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/cssnr)
-
-If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
 
 For a full list of current projects visit: [https://cssnr.github.io/](https://cssnr.github.io/)

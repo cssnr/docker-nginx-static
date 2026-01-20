@@ -45,9 +45,17 @@ jobs:
         if: ${{ !cancelled() }}
         uses: cssnr/actionlint-action@v1
 
-      - name: "Hadolint"
+      - name: "hadolint"
         if: ${{ !cancelled() }}
         uses: hadolint/hadolint-action@2332a7b74a6de0dda2e2221d575162eba76ba5e5 # v3.3.0
         with:
           dockerfile: src/Dockerfile
           ignore: DL3018
+
+      - name: "shellcheck"
+        if: ${{ !cancelled() }}
+        uses: ludeeus/action-shellcheck@master
+        env:
+          SHELLCHECK_OPTS: -x
+        with:
+          scandir: src

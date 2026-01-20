@@ -33,6 +33,9 @@ fi
 if [ "${ERROR_PAGE}" != "off" ];then
     echo "ERROR_PAGE: ${ERROR_PAGE}"
     echo "error_page 404 ${ERROR_PAGE};" >> /etc/nginx/conf.d/location.auth.conf
+    sed "s,ERROR_PAGE,${ERROR_PAGE},g" -i /etc/nginx/nginx.conf
+else
+    sed "s/ERROR_PAGE//g" -i /etc/nginx/nginx.conf
 fi
 
 if [ -n "${BASIC_AUTH}" ];then
